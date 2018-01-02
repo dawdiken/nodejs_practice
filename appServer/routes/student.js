@@ -24,7 +24,7 @@ router.get('/:id', function(req,res,next){
         res.send(result[0]);
     })
 })
-router.post('/create', function(req,res,next){
+router.post('/createme', function(req,res,next){
     var student = req.body;
     dao.insert(student, function(result){
         res.send("done");

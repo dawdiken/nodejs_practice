@@ -9,7 +9,12 @@
 <body>
 
 id <input name="id"/><br/>
-name<input name="name"/><br/>
+fname <input name="fname"/><br/>
+lname <input name="lname"/><br/>
+email <input name="email"/><br/>
+dob <input name="dob"/><br/>
+username<input name="username"/><br/>
+passw <input name="passw"/><br/>
 <button id="createButton"> create</button>
 <br/>
 <div id="response">?</div>
@@ -18,10 +23,23 @@ name<input name="name"/><br/>
         $('#createButton').click(function(){
             var student = {
                 id: $("input[name='id']").val(),
-                name: $("input[name='name']").val(),
+                fname: $("input[name='fname']").val(),
+                lname: $("input[name='lname']").val(),
+                email: $("input[name='email']").val(),
+                dob: $("input[name='dob']").val(),
+                usern: $("input[name='username']").val(),
+                passw: $("input[name='passw']").val(),
             }
+            console.log(student.id);
+            console.log(student.fname);
+            console.log(student.lname);
+            console.log(student.email);
+            console.log(student.dob);
+            console.log(student.usern);
+            console.log(student.passw);
+
             $.ajax({
-                url:"/student/create",
+                url:"/student/createme",
                 method:"POST",
                 data:student,
                 dataType:"HTML",
