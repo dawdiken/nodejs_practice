@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <meta charset="UTF-8">
+    <title>create</title>
+</head>
+<body>
+
+id <input name="id"/><br/>
+name<input name="name"/><br/>
+<button id="createButton"> create</button>
+<br/>
+<div id="response">?</div>
+<script>
+    $(function(){
+        $('#createButton').click(function(){
+            var student = {
+                id: $("input[name='id']").val(),
+                name: $("input[name='name']").val(),
+            }
+            $.ajax({
+                url:"/student/create",
+                method:"POST",
+                data:student,
+                dataType:"HTML",
+                success:function(result){
+                    console.log(result);
+                    $('#response').html( result);
+                },
+                error:function(xhr,status,error){
+                    console.log("error: "+error);
+                }
+            });
+         });
+    });
+</script>
+
+</body>
+</html>

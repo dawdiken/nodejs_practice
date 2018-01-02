@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <title>students</title>
+</head>
+<body>
+<table id="student-table">
+    <tr><th>id</th><th>name</th></tr>
+</table>
+
+<script>
+    $(function(){
+        $.ajax({
+            url:"/student/",
+            method:"GET",
+            data:"",
+            dataType:"JSON",
+            success:function(result){
+                console.log(result);
+                populateTable(result);
+            },
+            error:function(xhr,status,error){
+                console.log("error: "+error);
+            }
+
+        })
+    })
+    function populateTable(students){
+        var table = document.getElementById("student-table");
+
+        var len = students.length;
+        for (var i = 0; i<len; i++){
+            var student = students[i];
+            var row = table.insertRow(-1);
+            row.setAttribute("id", student.id);
+            var cell = row.insertCell(0);
+            cell.innerHTML = student.id;
+            cell = row.insertCell(1);
+            cell.innerHTML = student.name;
+            cell = row.insertCell(2);
+        }
+
+    }
+
+</script>
+</body>
+</html>
