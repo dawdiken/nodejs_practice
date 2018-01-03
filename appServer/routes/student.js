@@ -30,6 +30,12 @@ router.post('/createme', function(req,res,next){
         res.send("done");
     })
 })
+router.post('/login', function(req,res,next){
+    var student = req.body;
+    dao.findme(student, function(result){
+        res.send("loggedin");
+    })
+})
 router.post('/delete', function(req,res,next){
     var student = req.body;
     dao.delete(student, function(result){
