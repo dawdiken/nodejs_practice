@@ -80,18 +80,6 @@
                 <input type="date"  name="dob">
                 <input type="text"  name="usern">
                 <input type="text"  name="passw"><br>
-                <!--<input type="text" name="fname" placeholder="First Name">-->
-                <!--<input type="text" name="lname" placeholder="Last Name">-->
-                <!--<input type="text" name="email" placeholder="Email Address">-->
-                <!--<input type="date" name="dob" placeholder="Date of Birth">-->
-                <!--<input type="text" name="usern" placeholder="Username">-->
-                <!--<input type="text" name="passw" placeholder="Password"><br>-->
-                <!--<input type="text" id="Fname" name="fname" placeholder="First Name">-->
-                <!--<input type="text" id="Lname" name="lname" placeholder="Last Name">-->
-                <!--<input type="text" id="Email" name="email" placeholder="Email Address">-->
-                <!--<input type="date" id="DOB" name="dob" placeholder="Date of Birth">-->
-                <!--<input type="text" id="UserN" name="usern" placeholder="Username">-->
-                <!--<input type="text" id="PassW" name="passw" placeholder="Password"><br>-->
                 <input type="button" id="createuser" value="Add User">
             </form>
         </div>
@@ -152,8 +140,10 @@
                     passw: $("input[name='passw']").val()
 
                 }
-                console.log(student)
-                console.log("this is here")
+                console.log(student);
+                console.log("this is here");
+                var markup = "<tr><td><input type='checkbox' name='record'></td> <td class='fname'>" + student.fname + "</td><td class='lname'>" + student.lname + "</td><td class='email'>" + student.email + "</td><td class='dob'>" + student.dob + "</td><td class='usern'>" + student.usern + "</td><td class='pwd'>" + student.passw + "</td></tr>";
+                $("table tbody").append(markup);
 
                 $.ajax({
                     url: "/student/createme",
