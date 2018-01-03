@@ -133,22 +133,6 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
-        $(".add-row").click(function () {
-            // var fname = $("#Fname").val();
-            // var lname = $("#Lname").val();
-            // var email = $("#Email").val();
-            // var dob = $("#DOB").val();
-            // var usern = $("#UserN").val();
-            // var passw = $("#PassW").val();
-            // var markup = "<tr><td><input type='checkbox' name='record'></td> <td class='fname'>" + fname + "</td><td class='lname'>" + lname + "</td><td class='email'>" + email + "</td><td class='dob'>" + dob + "</td><td class='usern'>" + usern + "</td><td class='pwd'>" + passw + "</td></tr>";
-            // $("table tbody").append(markup);
-        });
-
-        $(".add-row").click(function(){
-            $(this).closest('form').find("input[type=text],textarea").val("");
-            $(this).closest('form').find("input[type=date]").val("");
-        });
-
         $(function () {
             $('#createuser').click(function () {
                 var student = {
@@ -158,14 +142,13 @@
                     email: $("input[name='email']").val(),
                     dob: $("input[name='dob']").val(),
                     usern: $("input[name='usern']").val(),
-                    passw: $("input[name='passw']").val(),
+                    passw: $("input[name='passw']").val()
 
                 }
                 console.log(student)
                 console.log("this is here")
-                var markup = "<tr><td><input type='checkbox' name='record'></td> <td name='userID'>" + student.id + "</td><td name='lname'>" + student.lname + "</td><td name='email'>" + student.email + "</td><td name='dob'>" + student.dob + "</td><td name='usern'>" + student.usern + "</td><td name='pwd'>" + student.passw + "</td></tr>";
+                var markup = "<tr><td><input type='checkbox' name='record'></td> <td class='userID'>" + student.id + "</td><td class='lname'>" + student.lname + "</td><td class='email'>" + student.email + "</td><td class='dob'>" + student.dob + "</td><td class='usern'>" + student.usern + "</td><td class='pwd'>" + student.passw + "</td></tr>";
                 $("table tbody").append(markup);
-
                 $.ajax({
                     url: "/student/createme",
                     method: "POST",
