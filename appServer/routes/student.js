@@ -37,11 +37,12 @@ router.post('/login', function(req,res,next){
             console.log("fuck");
             console.log(result);
             console.log(result.userId)
+            res.send("log in failed.. Try again");
         }
         else{
-            res.send("loggedin");
+            res.send("Success");
         }
-       
+
     })
 })
 router.post('/delete', function(req,res,next){

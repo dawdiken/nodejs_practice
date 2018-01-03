@@ -17,19 +17,9 @@ passw <input name="passw"/><br/>
     $(function(){
         $('#createButton').click(function(){
             var student = {
-                // id: $("input[name='id']").val(),
-                // fname: $("input[name='fname']").val(),
-                // lname: $("input[name='lname']").val(),
-                // email: $("input[name='email']").val(),
-                // dob: $("input[name='dob']").val(),
                 usern: $("input[name='username']").val(),
                 passw: $("input[name='passw']").val(),
             }
-            // console.log(student.id);
-            // console.log(student.fname);
-            // console.log(student.lname);
-            // console.log(student.email);
-            // console.log(student.dob);
             console.log(student.usern);
             console.log(student.passw);
 
@@ -39,8 +29,20 @@ passw <input name="passw"/><br/>
                 data:student,
                 dataType:"HTML",
                 success:function(result){
-                    console.log(result);
-                    $('#response').html(result);
+                    // console.log(result);
+                    var checkit = result;
+                    console.log("checkit");
+                    console.log(checkit);
+                    if (result.toString()=='Success'){
+                        console.log("worked");
+                        window.location.href = "/create.html";
+
+                    }
+                    else{
+                        console.log("Log in failed");
+                        $('#response').html(result);
+                    }
+
                 },
                 error:function(xhr,status,error){
                     console.log("error: "+error);
