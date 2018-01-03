@@ -10,12 +10,12 @@
 
 username<input name="username"/><br/>
 passw <input name="passw"/><br/>
-<button id="createButton"> create</button>
+<button id="logInButton"> LOG IN</button>
 <br/>
 <div id="response">?</div>
 <script>
     $(function(){
-        $('#createButton').click(function(){
+        $('#logInButton').click(function(){
             var student = {
                 usern: $("input[name='username']").val(),
                 passw: $("input[name='passw']").val(),
@@ -29,20 +29,15 @@ passw <input name="passw"/><br/>
                 data:student,
                 dataType:"HTML",
                 success:function(result){
-                    // console.log(result);
-                    var checkit = result;
-                    console.log("checkit");
-                    console.log(checkit);
+                    console.log(result);
                     if (result.toString()=='Success'){
-                        console.log("worked");
+                        console.log("Log in success");
                         window.location.href = "/create.html";
-
                     }
                     else{
                         console.log("Log in failed");
                         $('#response').html(result);
                     }
-
                 },
                 error:function(xhr,status,error){
                     console.log("error: "+error);
