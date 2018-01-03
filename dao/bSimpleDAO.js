@@ -28,7 +28,7 @@ var studentDAO={
             if (err) throw err;
             var data = [id];
             con.query(studentDAO.sqlFindById,data, function (err, result) {
-                handleErrorandLog(err,"findById",result)
+                handleErrorandLog(err,"findById",result);
                 if(callback)callback(result);
             });
         });

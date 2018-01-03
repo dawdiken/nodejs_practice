@@ -105,7 +105,7 @@
 <div>
     <button type="button" class="delete-row">Delete Row</button>
     <button type="button" class="edit-row">Edit Row</button><br>
-    <a href="Login.html"><button type="button" class="back-login">Back to login Page</button></a>
+    <a href="login.html"><button type="button" class="back-login">Back to login Page</button></a>
 </div>
 
 </body>
@@ -129,6 +129,46 @@
                 }
 
             });
+
+            $(".delete-row").click(function(){
+                var i = 0;
+                $("table tbody").find('input[name="record"]').each(function(){
+                    console.log(i)
+
+                    if($(this).is(":checked")){
+                        console.log($(this))
+                        // console.log($('input[name="record"]'));
+                        $(this).parents("tr").remove();
+                        var result;
+                        $.ajax({
+                            url:"/student/",
+                            method:"GET",
+                            data:"",
+                            dataType:"JSON",
+                            success:function(result){
+
+                                console.log("IT WORKED");
+                                console.log("i = " + i);
+                                // removeUser(result, i);
+                                // var student = result[i];
+                                var student = result[i];
+                                console.log(result)
+                                var id = student.id;
+                                console.log( id );
+                            },
+                            error:function(xhr,status,error){
+                                console.log("error: "+error);
+                            }
+
+
+                        });
+                        i++;
+
+                        // student[i]
+                    }
+                });
+            });
+
             $('#createuser').click(function () {
                 var student = {
                     id: $("input[name='userID']").val(),
@@ -163,6 +203,17 @@
     });
 
     function populateTable(students){
+        var table = document.getElementById("student-table");
+
+        var len = students.length;
+        for (var i = 0; i<len; i++){
+            var student = students[i];
+            var markup = "<tr><td><input type='checkbox' name='record'></td> <td class='fname'>" + student.fname + "</td><td class='lname'>" + student.lname + "</td><td class='email'>" + student.email + "</td><td class='dob'>" + student.dob + "</td><td class='usern'>" + student.usern + "</td><td class='pwd'>" + student.passw + "</td></tr>";
+            $("table tbody").append(markup);
+        }
+    }
+
+    function removeUser(students, i){
         var table = document.getElementById("student-table");
 
         var len = students.length;
