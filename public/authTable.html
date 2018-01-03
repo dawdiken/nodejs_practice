@@ -111,15 +111,6 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td><input type="checkbox" name="record"></td>
-            <td class="fname">Peter</td>
-            <td class="lname">Parker</td>
-            <td class="email">peterparker@mail.com</td>
-            <td class="dob">1987-11-11</td>
-            <td class="usern">PParker</td>
-            <td class="pwd">peter</td>
-        </tr>
         </tbody>
     </table>
 </form>
@@ -134,6 +125,22 @@
 <script type="text/javascript">
     $(document).ready(function() {
         $(function () {
+            $.ajax({
+                url:"/student/",
+                method:"GET",
+                data:"",
+                dataType:"JSON",
+                success:function(result){
+                    console.log(result);
+                    populateTable(result);
+                    console.log("lenght");
+                    console.log(result.length);
+                },
+                error:function(xhr,status,error){
+                    console.log("error: "+error);
+                }
+
+            });
             $('#createuser').click(function () {
                 var student = {
                     id: $("input[name='userID']").val(),
@@ -147,8 +154,7 @@
                 }
                 console.log(student)
                 console.log("this is here")
-                var markup = "<tr><td><input type='checkbox' name='record'></td> <td class='userID'>" + student.id + "</td><td class='lname'>" + student.lname + "</td><td class='email'>" + student.email + "</td><td class='dob'>" + student.dob + "</td><td class='usern'>" + student.usern + "</td><td class='pwd'>" + student.passw + "</td></tr>";
-                $("table tbody").append(markup);
+
                 $.ajax({
                     url: "/student/createme",
                     method: "POST",
@@ -164,7 +170,18 @@
                 });
             });
         });
-    })
+    });
+
+    function populateTable(students){
+        var table = document.getElementById("student-table");
+
+        var len = students.length;
+        for (var i = 0; i<len; i++){
+            var student = students[i];
+            var markup = "<tr><td><input type='checkbox' name='record'></td> <td class='fname'>" + student.fname + "</td><td class='lname'>" + student.lname + "</td><td class='email'>" + student.email + "</td><td class='dob'>" + student.dob + "</td><td class='usern'>" + student.usern + "</td><td class='pwd'>" + student.passw + "</td></tr>";
+            $("table tbody").append(markup);
+        }
+    }
 
 </script>
 

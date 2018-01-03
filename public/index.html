@@ -20,6 +20,8 @@
             success:function(result){
                 console.log(result);
                 populateTable(result);
+                console.log("lenght");
+                console.log(result.length);
             },
             error:function(xhr,status,error){
                 console.log("error: "+error);
@@ -36,20 +38,20 @@
             var row = table.insertRow(-1);
             row.setAttribute("id", student.id);
             var cell = row.insertCell(0);
-            cell.innerHTML = student.id;
-            cell = row.insertCell(1);
+            // cell.innerHTML = student.id;
+            // cell = row.insertCell(1);
             cell.innerHTML = student.fname;
-            cell = row.insertCell(2);
+            cell = row.insertCell(1);
             cell.innerHTML = student.lname;
-            cell = row.insertCell(3);
+            cell = row.insertCell(2);
             cell.innerHTML = student.email;
-            cell = row.insertCell(4);
+            cell = row.insertCell(3);
             cell.innerHTML = student.dob;
-            cell = row.insertCell(5);
+            cell = row.insertCell(4);
             cell.innerHTML = student.usern;
-            cell = row.insertCell(6);
+            cell = row.insertCell(5);
             cell.innerHTML = student.passw;
-            cell = row.insertCell(7);
+            cell = row.insertCell(6);
 
         }
 
