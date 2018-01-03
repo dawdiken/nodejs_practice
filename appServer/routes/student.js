@@ -6,7 +6,6 @@ var dao = require('../../dao/bSimpleDAO');
 router.get('/', function(req, res, next) {
     res.setHeader('Content-Type', 'application/json');
     dao.getAll(function(result){
-        //console.log(result);
         res.send(result);
     })
     //console.log("in students home");
@@ -33,7 +32,16 @@ router.post('/createme', function(req,res,next){
 router.post('/login', function(req,res,next){
     var student = req.body;
     dao.findme(student, function(result){
-        res.send("loggedin");
+        if (!result.length)
+        {
+            console.log("fuck");
+            console.log(result);
+            console.log(result.userId)
+        }
+        else{
+            res.send("loggedin");
+        }
+       
     })
 })
 router.post('/delete', function(req,res,next){
