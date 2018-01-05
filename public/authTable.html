@@ -127,18 +127,15 @@
                 error:function(xhr,status,error){
                     console.log("error: "+error);
                 }
-
             });
 
             $(".delete-row").click(function(){
                 var i = 0;
+
                 $("table tbody").find('input[name="record"]').each(function(){
                     console.log(i)
-
                     if($(this).is(":checked")){
-                        console.log($(this))
-                        // console.log($('input[name="record"]'));
-                        $(this).parents("tr").remove();
+                        console.log($(this));
                         var result;
                         $.ajax({
                             url:"/student/",
@@ -146,27 +143,26 @@
                             data:"",
                             dataType:"JSON",
                             success:function(result){
-
                                 console.log("IT WORKED");
                                 console.log("i = " + i);
-                                // removeUser(result, i);
-                                // var student = result[i];
                                 var student = result[i];
-                                console.log(result)
-                                var id = student.id;
-                                console.log( id );
+                                console.log("student here " + student.userID);
+                                console.log(result);
+                                removeUser(result, i);
                             },
                             error:function(xhr,status,error){
                                 console.log("error: "+error);
                             }
-
-
                         });
-                        i++;
 
-                        // student[i]
+                        $(this).parents("tr").remove();
+                    }
+                    else{
+                        i++;
+                        console.log("fuck me why wont you increment" + i);
                     }
                 });
+
             });
 
             $('#createuser').click(function () {
@@ -215,13 +211,28 @@
 
     function removeUser(students, i){
         var table = document.getElementById("student-table");
+        var num = i;
+        console.log("num = " + num);
 
         var len = students.length;
-        for (var i = 0; i<len; i++){
-            var student = students[i];
-            var markup = "<tr><td><input type='checkbox' name='record'></td> <td class='fname'>" + student.fname + "</td><td class='lname'>" + student.lname + "</td><td class='email'>" + student.email + "</td><td class='dob'>" + student.dob + "</td><td class='usern'>" + student.usern + "</td><td class='pwd'>" + student.passw + "</td></tr>";
-            $("table tbody").append(markup);
-        }
+        console.log("function call");
+        var student = students[i];
+        console.log(student);
+        console.log(student.userID);
+
+        $.ajax({
+            url: "/student/deleteline",
+            method: "POST",
+            data: student,
+            dataType: "HTML",
+            success: function (result) {
+                console.log(result);
+                $('#response').html(result);
+            },
+            error: function (xhr, status, error) {
+                console.log("error: " + error);
+            }
+        });
     }
 
 </script>

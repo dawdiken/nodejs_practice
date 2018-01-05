@@ -51,6 +51,13 @@ router.post('/delete', function(req,res,next){
         res.send("done");
     })
 })
+
+router.post('/deleteline', function(req,res,next){
+    var student = req.body;
+    dao.delete(student.userID, function(result){
+        res.send("done");
+    })
+})
 router.post('/update', function(req,res,next){
     var student = req.body;
     dao.update(student, function(result){
